@@ -1,0 +1,33 @@
+.voted__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 15px 20px;
+  padding: 0 0 40px 0;
+}
+
+@media screen and (max-width: 1023px) {
+  .voted__grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .voted__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px 10px;
+  }
+}
+
+.voted__img {
+  object-fit: cover;
+  max-height: 165px;
+  width: 100%;
+}
+
+.voted__name {
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 18px;
+  text-align: center;
+  margin: 0;
+}

@@ -1,0 +1,232 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static "index.css" %}">
+  <title>Геолог</title>
+</head>
+
+<body class="root">
+  <div class="page">
+
+    <header class="header">
+      <button type="button" class="burger">
+        <div class="burger__bar"></div>
+      </button>
+      <nav class="header__nav">
+        <ul class="header__nav-list">
+          <li class="header__nav-item">
+            <a class="header__nav-link" href="/">Главная</a>
+          </li>
+          <li class="header__nav-item">
+            <a class="header__nav-link" href="/news">Новости</a>
+          </li>
+          <li class="header__nav-item">
+            <a class="header__nav-link" href="/documents">Документы</a>
+          </li>
+          <li class="header__nav-item">
+            <a class="header__nav-link" href="/contacts">Контакты</a>
+          </li>
+          <li class="header__nav-item">
+            <a class="header__nav-link" href="/forum">Форум</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="header__interactions">
+        <a class="header__tel-link" href="tel:+79999999999">+7 (999) 999-99-99</a>
+        <a class="header__profile-link" href="/login">Войти в личный кабинет</a>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="main__hero hero">
+        <div class="hero__text">
+          <h1 class="hero__title">“ГЕОЛОГ”</h1>
+          <h3 class="hero__subtitle">Садоводческое некоммерческое товарищество</h3>
+        </div>
+      </section>
+
+      <section class="main__welcome welcome">
+        <h2 class="welcome__title title">Добро пожаловать на сайт СНТ “ГЕОЛОГ” </h2>
+        <div class="welcome__content content-block">
+          <p class="welcome__text text">На этом сайте размещена информация и новости о том, что происходит в СНТ. Сайт
+            является средством коммуникации Председателя и Правления СНТ с его членами и другими заинтересованными
+            сторонами.</p>
+          <img class="welcome__img img-block" src="{% static "./assets/images/welcome.jpg" %}" alt="Добро Пожаловать">
+        </div>
+      </section>
+
+      <section class="main__about about">
+        <h2 class="about__title title">О СНТ</h2>
+        <div class="about__content content-block">
+          <img class="about__img img-block about__img--top" src="{% static "./assets/images/welcome.jpg" %}" alt="Добро Пожаловать">
+          <p class="about__text text about__text--top">На этом сайте размещена информация и новости о том, что
+            происходит
+            в СНТ. Сайт
+            является средством коммуникации Председателя и Правления СНТ с его членами и другими заинтересованными
+            сторонами.</p>
+        </div>
+        <div class="about__content content-block">
+          <p class="about__text text about__text--bottom">На этом сайте размещена информация и новости о том, что
+            происходит в СНТ. Сайт
+            является средством коммуникации Председателя и Правления СНТ с его членами и другими заинтересованными
+            сторонами.</p>
+          <img class="about__img img-block about__img--bottom" src="{% static "./assets/images/welcome.jpg" %}" alt="Добро Пожаловать">
+        </div>
+      </section>
+
+      <section class="main__important important">
+        <div class="important__header">
+          <h2 class="important__title title">Важные объявления</h2>
+          <a class="important__header-link title" href="#">Написать председателю</a>
+        </div>
+        <div class="important__content">
+          <div class="important__content-column">
+            {% for new in news %}
+              <article class="important__article">
+                <h3 class="important__article-title">{{ new.name|truncatechars:35 }}</h3>
+                <p class="important__article-date">{{ new.date }}</p>
+                <p class="important__article-text">{{ new.content|truncatechars:180 }}</p>
+                <a class="important__article-link" href="{% url 'newsSingle' pk=new.pk %}">Подробнее</a>
+              </article>
+            {% endfor %}
+            <!-- <article class="important__article">
+              <h3 class="important__article-title">Общее собрание членов товарищества</h3>
+              <p class="important__article-date">16.05.2023</p>
+              <p class="important__article-text">В рамках спецификации современных стандартов, акционеры крупнейших
+                компаний,
+                превозмогая сложившуюся непростую экономическую ситуацию, рассмотрены исключительно в разрезе
+                маркетинговых.</p>
+              <a class="important__article-link" href="./pages/single-news.html">Подробнее</a>
+            </article> -->
+            
+            <!-- <article class="important__article">
+              <h3 class="important__article-title">Общее собрание членов товарищества</h3>
+              <p class="important__article-date">16.05.2023</p>
+              <p class="important__article-text">В рамках спецификации современных стандартов, акционеры крупнейших
+                компаний,
+                превозмогая сложившуюся непростую экономическую ситуацию, рассмотрены исключительно в разрезе
+                маркетинговых</p>
+              <a class="important__article-link" href="./pages/single-news.html">Подробнее</a>
+            </article>
+            
+            <article class="important__article">
+              <h3 class="important__article-title">Общее собрание членов товарищества</h3>
+              <p class="important__article-date">16.05.2023</p>
+              <p class="important__article-text">В рамках спецификации современных стандартов, акционеры крупнейших
+                компаний,
+                превозмогая сложившуюся непростую экономическую ситуацию, рассмотрены исключительно в разрезе
+                маркетинговых</p>
+              <a class="important__article-link" href="./pages/single-news.html">Подробнее</a>
+            </article> -->
+          
+          </div>
+          <div class="important__content-column">
+            <article class="important__article important__article--aside"></article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <h2 class="footer__title">СНТ “ГЕОЛОГ”</h2>
+      <nav class="footer__nav">
+        <h4 class="footer__nav-title">Навигация</h4>
+        <ul class="footer__nav-list">
+          <li class="footer__nav-item">
+            <a class="footer__nav-link" href="/">Главная</a>
+          </li>
+          <li class="footer__nav-item">
+            <a class="footer__nav-link" href="/news">Новости</a>
+          </li>
+          <li class="footer__nav-item">
+            <a class="footer__nav-link" href="/documents">Документы</a>
+          </li>
+          <li class="footer__nav-item">
+            <a class="footer__nav-link" href="/gallery">Фотогалерея</a>
+          </li>
+          <li class="footer__nav-item">
+            <a class="footer__nav-link" href="/contacts">Контакты</a>
+          </li>
+          <li class="footer__nav-item">
+            <a class="footer__nav-link" href="/vacancies">Вакансии</a>
+          </li>
+        </ul>
+      </nav>
+    </footer>
+
+    <div class="popup">
+      <div class="popup__container">
+        <button class="popup__close" type="button" aria-label="Закрыть попап"></button>
+        <h2 class="popup__title">СНТ “ГЕОЛОГ”</h2>
+        <form method="POST" id="login-form" class="popup__form" name="form-auth">
+          {% csrf_token %}
+          <h3 class="popup__form-title title">Авторизация</h3>
+          <label class="popup__fieldset">
+            Логин:
+            <input class="popup__form-input popup__form-input--email" name="username" required>
+          </label>
+          <label class="popup__fieldset">
+            Пароль:
+            <input class="popup__form-input popup__form-input--password" type="password" name="password" required>
+          </label>
+          <div class="popup__links-row">
+            <label class="popup__checkbox">
+              <input type="checkbox">
+              <span class="popup__checkmark"></span>
+              Запомнить меня
+            </label>
+            <a class="popup__forget-link" href="#">Забыл пароль</a>
+          </div>
+          <button class="popup__submit" type="submit">Войти</button>
+          <p class="popup__footer-text">
+            Нажимая на кнопку Войти, Вы добровольно даете
+            <a class="popup__footer-text-link" href="#">согласие</a>
+            на обработку Ваших персональных данных.
+          </p>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</body>
+<script src="{% static "index.js" %}"></script>
+<!-- <script>
+  var loginForm = document.getElementById('login-form');
+
+  loginForm.addEventListener('submit', function(e) {
+      e.preventDefault(); // Отменяем стандартное поведение отправки формы
+
+      // Создаем объект FormData для сбора данных из формы
+      var formData = new FormData(loginForm);
+
+      // Создаем AJAX запрос к серверу
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', '/login_ajax/', true);
+      xhr.onreadystatechange = function() {
+          if (xhr.readyState === XMLHttpRequest.DONE) {
+              if (xhr.status === 200) {
+                  // Обработка успешного ответа от сервера
+                  var response = JSON.parse(xhr.responseText);
+                  if (response.status === 'success') {
+                      // Добавьте код для перехода на другую страницу или обновления текущей страницы
+                      window.location.href = '/homepage/';
+                  } else {
+                      alert('Ошибка авторизации: ' + response.message);
+                  }
+              } else {
+                  // Обработка ошибочного ответа от сервера
+                  alert('Ошибка при отправке AJAX запроса');
+              }
+          }
+      };
+      xhr.send(formData);
+  });
+</script> -->
+
+</html>

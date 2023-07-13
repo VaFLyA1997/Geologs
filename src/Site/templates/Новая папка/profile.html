@@ -1,0 +1,111 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static "./profile.css" %}">
+  <title>Личный Кабинет</title>
+</head>
+
+<body class="root">
+  <div class="page">
+
+    <header class="header">
+      <button type="button" class="burger">
+        <div class="burger__bar"></div>
+      </button>
+      <nav class="header__nav">
+        <ul class="header__nav-list">
+          <li class="header__nav-item">
+            <a class="header__nav-link" href="/">Главная</a>
+          </li>
+          <li class="header__nav-item">
+            <a class="header__nav-link" href="/news">Новости</a>
+          </li>
+          <li class="header__nav-item">
+            <a class="header__nav-link" href="/documents">Документы</a>
+          </li>
+          <li class="header__nav-item">
+            <a class="header__nav-link" href="/contacts">Контакты</a>
+          </li>
+          <li class="header__nav-item">
+            <a class="header__nav-link" href="/forum">Форум</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="header__interactions">
+        <a class="header__tel-link" href="tel:+79999999999">+7 (999) 999-99-99</a>
+        <a class="header__profile-link" href="#">Ivanov@yandex.ru</a>
+      </div>
+    </header>
+
+    <main class="main">
+
+      <section class="main__hero hero">
+        <div class="hero__text">
+          <h1 class="hero__title hero__title--pages">Добро пожаловать в личный кабинет</h1>
+        </div>
+      </section>
+
+      <section class="main__profile profile">
+        <img class="profile__avatar" src="../assets/images/avatar.jpg" alt="#">
+        <div class="profile__data">
+          <div class="profile__data-item">
+            <p class="profile__data-item-name">Фио:</p>
+            <p class="profile__data-item-value">Иванов Иван Иванович</p>
+            <button class="profile__data-item-btn" type="button"></button>
+          </div>
+          <div class="profile__data-item">
+            <p class="profile__data-item-name">Логин:</p>
+            <p class="profile__data-item-value">Ivanov@yandex.ru</p>
+            <button class="profile__data-item-btn" type="button"></button>
+          </div>
+          <div class="profile__data-item">
+            <p class="profile__data-item-name">Пароль:</p>
+            <p class="profile__data-item-value">************</p>
+            <button class="profile__data-item-btn" type="button"></button>
+          </div>
+        </div>
+        <div class="profile__count">
+          <p class="profile__count-text">Задолженность:</p>
+          <p class="profile__count-value">-1500 руб.</p>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="footer">
+      <h2 class="footer__title">СНТ “ГЕОЛОГ”</h2>
+      <nav class="footer__nav">
+        <h4 class="footer__nav-title">Навигация</h4>
+        <ul class="footer__nav-list">
+          <li class="footer__nav-item">
+            <a class="footer__nav-link" href="#">Главная</a>
+          </li>
+          <li class="footer__nav-item">
+            <a class="footer__nav-link" href="#">Новости</a>
+          </li>
+          <li class="footer__nav-item">
+            <a class="footer__nav-link" href="#">Документы</a>
+          </li>
+          <li class="footer__nav-item">
+            <a class="footer__nav-link" href="#">Фотогалерея</a>
+          </li>
+          <li class="footer__nav-item">
+            <a class="footer__nav-link" href="#">Контакты</a>
+          </li>
+          <li class="footer__nav-item">
+            <a class="footer__nav-link" href="#">Вакансии</a>
+          </li>
+        </ul>
+      </nav>
+    </footer>
+
+  </div>
+</body>
+<script src="./index.js"></script>
+
+</html>

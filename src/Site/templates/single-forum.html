@@ -1,0 +1,279 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static "./single-forum.css" %}">
+  <title>Тема форума</title>
+</head>
+
+<body class="root">
+  <div class="page">
+
+    <header class="header">
+      <button type="button" class="burger">
+        <div class="burger__bar"></div>
+      </button>
+      <nav class="header__nav">
+        <ul class="header__nav-list">
+          <li class="header__nav-item">
+            <a class="header__nav-link" href="../index.html">Главная</a>
+          </li>
+          <li class="header__nav-item">
+            <a class="header__nav-link" href="#">Новости</a>
+          </li>
+          <li class="header__nav-item">
+            <a class="header__nav-link" href="#">Документы</a>
+          </li>
+          <li class="header__nav-item">
+            <a class="header__nav-link" href="#">Контакты</a>
+          </li>
+          <li class="header__nav-item">
+            <a class="header__nav-link" href="#">Форум</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="header__interactions">
+        <a class="header__tel-link" href="tel:+79999999999">+7 (999) 999-99-99</a>
+        <a class="header__profile-link" href="#">Войти в личный кабинет</a>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="main__single-forum single-forum">
+        <a class="single-forum__link" href="/forum">Вернутся ко всем темам</a>
+        <h2 class="single-forum__title">{{ forum.title }}</h2>
+        <article class="single-forum__article">
+          <div class="single-forum__article-creator">
+            <img class="single-forum__article-img" src="../assets/images/test.jpg" alt="Аватар">
+            <p class="single-forum__article-creator-name">Администратор</p>
+            <p class="single-forum__article-creator-title">Автор темы</p>
+            <p class="single-forum__article-data">{{ forum.date }}</p>
+          </div>
+          <div class="single-forum__article-body">
+            <p class="single-forum__article-text">{{ forum.Description }}</p>
+            {% if voting_options %}
+            <form class="single-forum__article-form" action="{% url 'vote' %}" method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+              <h3 class="single-forum__article-form-title">{{ forum.titleVoting }}</h3>
+              <div class="single-forum__article-form-radio-wrapper">
+                {% for option in voting_options %}
+                
+                
+                <label class="voting-option" style="{{ option.gradient }}">{{ option.option_text }}
+                  
+                  
+                  <input type="radio" name="vote" value="{{ option.id }}">
+                  <span></span>
+                  <p class="single-forum__article-form-input-counter" data-option-id="{{ option.id }}">{{ option.voters.all.count }}</p>
+                </label>
+                {% endfor %}
+              </div>
+              <input type="hidden" name="forum_id" value="{{ forum.id }}">  <!-- Добавляем скрытое поле с идентификатором темы формы -->
+              <button class="single-forum__article-form-submit vote-button" type="button" data-option-id="">Проголосовать</button>
+              <a class="single-forum__article-form-link" href="{% url 'voted_users' forum.id %}">Посмотреть проголосовавших</a>
+            </form>
+            {% endif %}
+          </div>
+          <!-- <div class="single-forum__article-body">
+            <p class="single-forum__article-text">{{ forum.Description }}</p>
+            {% if voting_options %}
+            <form class="single-forum__article-form" action="{% url 'vote' %}" method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+              <h3 class="single-forum__article-form-title">{{ forum.titleVoting }}</h3>
+              <div class="single-forum__article-form-radio-wrapper">
+                {% for option in voting_options %}
+                <label>{{ option.option_text }}
+                  <input type="radio" name="vote" value="{{ option.id }}">
+                  <span></span>
+                  <p class="single-forum__article-form-input-counter" data-option-id="{{ option.id }}">{{ option.voters.all.count }}</p>
+                </label>
+                {% endfor %}
+              </div>
+              <input type="hidden" name="forum_id" value="{{ forum.id }}">  Добавляем скрытое поле с идентификатором темы формы
+              <button class="single-forum__article-form-submit vote-button" type="button" data-option-id="">Проголосовать</button>
+              <a class="single-forum__article-form-link" href="{% url 'voted_users' forum.id %}">Посмотреть проголосовавших</a>
+            </form>
+            {% endif %}
+          </div> -->
+
+        </article>
+        <div class="single-forum__comments" id="coms">
+          {% for comment in comments %}
+          <article class="single-forum__article single-forum__article--comment">
+            <div class="single-forum__article-creator">
+              <img class="single-forum__article-img" src="{{ comment.user.avatar.url }}" alt="Аватар">
+              <p class="single-forum__article-creator-name">{{ comment.user.last_name }} {{ comment.user.first_name }}</p>
+              <p class="single-forum__article-data">№{{ forloop.counter }} {{ comment.date }}</p>
+            </div>
+            <div class="single-forum__article-body">
+              <p class="single-forum__article-text">{{ comment.text }}</p>
+            </div>
+          </article>
+          {% endfor %}
+      
+        </div>
+      </section>
+      <form class="single-forum__message message" name="message" id="commentForm" method="post">
+        {% csrf_token %}
+        <button class="message__button message__button--download" type="button"></button>
+        <label class="message__label">
+          <input class="message__input search" type="text" name="text" placeholder="Написать сообщение" />
+          <button class="message__button message__button--photo" type="button"></button>
+          <button class="message__button message__button--smile" type="button"></button>
+        </label>
+        <button class="message__button message__button--send" type="button" id="submitButton" onclick="submitComment()"></button>
+      </form>
+    </main>
+
+    <footer class="footer">
+      <h2 class="footer__title">СНТ “ГЕОЛОГ”</h2>
+      <nav class="footer__nav">
+        <h4 class="footer__nav-title">Навигация</h4>
+        <ul class="footer__nav-list">
+          <li class="footer__nav-item">
+            <a class="footer__nav-link" href="/">Главная</a>
+          </li>
+          <li class="footer__nav-item">
+            <a class="footer__nav-link" href="/news">Новости</a>
+          </li>
+          <li class="footer__nav-item">
+            <a class="footer__nav-link" href="/documents">Документы</a>
+          </li>
+          <li class="footer__nav-item">
+            <a class="footer__nav-link" href="/gallery">Фотогалерея</a>
+          </li>
+          <li class="footer__nav-item">
+            <a class="footer__nav-link" href="/contacts">Контакты</a>
+          </li>
+          <li class="footer__nav-item">
+            <a class="footer__nav-link" href="/vacancies">Вакансии</a>
+          </li>
+        </ul>
+      </nav>
+    </footer>
+
+    <div class="popup">
+      <div class="popup__container">
+        <button class="popup__close" type="button" aria-label="Закрыть попап"></button>
+        <h2 class="popup__title">СНТ “ГЕОЛОГ”</h2>
+        <form class="popup__form" name="form-auth">
+          <h3 class="popup__form-title title">Авторизация</h3>
+          <label class="popup__fieldset">
+            Логин:
+            <input class="popup__form-input popup__form-input--email" type="email" name="login" required>
+          </label>
+          <label class="popup__fieldset">
+            Пароль:
+            <input class="popup__form-input popup__form-input--password" type="password" name="password" required>
+          </label>
+          <div class="popup__links-row">
+            <label class="popup__checkbox">
+              <input type="checkbox">
+              <span class="popup__checkmark"></span>
+              Запомнить меня
+            </label>
+            <a class="popup__forget-link" href="#">Забыл пароль</a>
+          </div>
+          <button class="popup__submit" type="submit">Войти</button>
+          <p class="popup__footer-text">
+            Нажимая на кнопку Войти, Вы добровольно даете
+            <a class="popup__footer-text-link" href="#">согласие</a>
+            на обработку Ваших персональных данных.
+          </p>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</body>
+<script src="../static/index.js"></script>
+<script src="{% static 'node_modules/jquery/dist/jquery.min.js' %}"></script>
+<script>
+function submitComment() {
+  var form = $('#commentForm');
+  var formData = form.serialize();
+
+  $.ajax({
+    type: 'POST',
+    url: form.attr('action'),
+    data: formData,
+    success: function(response) {
+      var commentsContainer = $('#coms');
+      commentsContainer.html($(response).find('#coms').html());
+      $('#comments').html(response);
+      form.trigger('reset');
+    },
+    error: function(xhr, ajaxOptions, thrownError) {
+      console.log('AJAX Error:', thrownError);
+      console.log('XHR Status:', xhr.status);
+      console.log('Response Text:', xhr.responseText);
+    }
+  });
+}
+</script>
+
+<script>
+
+$(document).ready(function() {
+  $(".vote-button").on("click", function() {
+    var option_id = $(this).data("option-id");
+    var form = $(this).closest("form");
+
+    $.ajax({
+      url: form.attr("action"),
+      method: form.attr("method"),
+      data: form.serialize(),
+      success: function(response) {
+        // Обновление числа проголосовавших для выбранного варианта
+        $(".single-forum__article-form-input-counter[data-option-id=" + option_id + "]").text(response.votes_count);
+
+        // Обновление списка вариантов ответов
+        $(".single-forum__article-form-radio-wrapper").replaceWith(response.form_html);
+      },
+      error: function(xhr, status, error) {
+        // Обработка ошибки, если необходимо
+      }
+    });
+  });
+
+  $("input[type='radio'][name='vote']").on("change", function() {
+    var option_id = $(this).val();
+    $(".vote-button").data("option-id", option_id);
+  });
+});
+
+// $(".vote-button").on("click", function() {
+//   var option_id = $(this).data("option-id");
+//   var form = $(this).closest("form");
+  
+//   $.ajax({
+//     url: form.attr("action"),
+//     method: form.attr("method"),
+//     data: form.serialize(),
+//     success: function(response) {
+//       // Обновление числа проголосовавших для выбранного варианта
+//       $(".single-forum__article-form-input-counter[data-option-id=" + option_id + "]").text(response.total_votes);
+      
+//       // Обновление процентного соотношения в градиенте фона
+//       var total_votes = parseInt(response.total_votes);
+//       $(".voting-option").each(function() {
+//         var option_votes = parseInt($(this).find(".single-forum__article-form-input-counter").text());
+//         var percentage = (option_votes / total_votes) * 100;
+//         $(this).css("background", "linear-gradient(to right, #b1ce76 " + percentage + "%, #fff " + percentage + "%)");
+//       });
+      
+//       // Обновление списка вариантов ответов
+//       $(".single-forum__article-form-radio-wrapper").replaceWith(response.form_html);
+//     },
+//     error: function(xhr, status, error) {
+//       // Обработка ошибки, если необходимо
+//     }
+//   });
+// });
+  </script>
+
+</html>

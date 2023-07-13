@@ -1,0 +1,22 @@
+@font-face {
+  font-family: "Century-Gothic";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("Century-Gothic.woff2") format("woff2"), url("Century-Gothic.woff") format("woff");
+}
+@font-face {
+  font-family: "Century-Gothic";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("Century-Gothic-Bold.woff2") format("woff2"), url("Century-Gothic-Bold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Kaisei-HarunoUmi";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("KaiseiHarunoUmi-Bold.woff2") format("woff2"), url("KaiseiHarunoUmi-Bold.woff") format("woff");
+}

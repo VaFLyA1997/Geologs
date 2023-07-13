@@ -1,0 +1,179 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static "./contacts.css" %}">
+  <title>Контакты</title>
+</head>
+
+<body class="root">
+  <div class="page">
+
+    <header class="header">
+      <button type="button" class="burger">
+        <div class="burger__bar"></div>
+      </button>
+      <nav class="header__nav">
+        <ul class="header__nav-list">
+          <li class="header__nav-item">
+            <a class="header__nav-link" href="/">Главная</a>
+          </li>
+          <li class="header__nav-item">
+            <a class="header__nav-link" href="/news">Новости</a>
+          </li>
+          <li class="header__nav-item">
+            <a class="header__nav-link" href="/documents">Документы</a>
+          </li>
+          <li class="header__nav-item">
+            <a class="header__nav-link" href="/contacts">Контакты</a>
+          </li>
+          <li class="header__nav-item">
+            <a class="header__nav-link" href="/forum">Форум</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="header__interactions">
+        <a class="header__tel-link" href="tel:+79999999999">+7 (999) 999-99-99</a>
+        <a class="header__profile-link" href="#">Войти в личный кабинет</a>
+      </div>
+    </header>
+
+    <main class="main">
+
+      <section class="main__hero hero">
+        <div class="hero__text">
+          <h1 class="hero__title hero__title--pages">Контакты</h1>
+        </div>
+      </section>
+
+      <section class="main__contacts contacts">
+        <ul class="contacts__content">
+          <li class="contacts__content-item">
+            <h4 class="contacts__content-item-title">Название СНТ</h4>
+            <p class="contacts__content-item-text">САДОВОДЧЕСКОЕ НЕКОММЕРЧЕСКОЕ ТОВАРИЩЕСТВО «ГЕОЛОГ»</p>
+          </li>
+          <li class="contacts__content-item">
+            <h4 class="contacts__content-item-title">Краткое название</h4>
+            <p class="contacts__content-item-text">СНТ “ГЕОЛОГ”</p>
+          </li>
+          <li class="contacts__content-item">
+            <h4 class="contacts__content-item-title">Почтовый адрес</h4>
+            <p class="contacts__content-item-text">664049, г.Иркутск, А\Я 181</p>
+          </li>
+          <li class="contacts__content-item">
+            <h4 class="contacts__content-item-title">Фактический адрес</h4>
+            <p class="contacts__content-item-text">Иркутская область, Иркутский район, Ершовский залив,
+              садоводческое некоммерческое товарищество «Геолог», ул.Спортивная,1</p>
+          </li>
+          <ul class="contacts__content-item contacts__contacts">
+            <li class="contacts__contact">
+              <span class="contacts__contact-name">Тел.:</span>
+              <p class="contacts__contact-value">8(3952)-531835</p>
+            </li>
+            <li class="contacts__contact">
+              <span class="contacts__contact-name">ИНН:</span>
+              <p class="contacts__contact-value">3812053033</p>
+            </li>
+            <li class="contacts__contact">
+              <span class="contacts__contact-name">КПП:</span>
+              <p class="contacts__contact-value">382701001</p>
+            </li>
+            <li class="contacts__contact">
+              <span class="contacts__contact-name">р.с.:</span>
+              <p class="contacts__contact-value">40703810618350100716</p>
+            </li>
+            <li class="contacts__contact">
+              <p class="contacts__contact-value">Байкальский банк ПАО Сбербанк г.Иркутск</p>
+            </li>
+            <li class="contacts__contact">
+              <span class="contacts__contact-name">к/с.:</span>
+              <p class="contacts__contact-value">30101810900000000607</p>
+            </li>
+            <li class="contacts__contact">
+              <span class="contacts__contact-name">БИК:</span>
+              <p class="contacts__contact-value">042520607</p>
+            </li>
+            <li class="contacts__contact">
+              <span class="contacts__contact-name">октмо:</span>
+              <p class="contacts__contact-value">25701000</p>
+            </li>
+            <li class="contacts__contact">
+              <p class="contacts__contact-value"><span class="contacts__contact-name">Назначение платежа:</span> указать
+                № уч-ка, ФИО,названия платежа (членские взносы, эл/энергия,
+                целевой взнос и т.д.)</p>
+            </li>
+          </ul>
+        </ul>
+
+      </section>
+
+    </main>
+
+    <footer class="footer">
+      <h2 class="footer__title">СНТ “ГЕОЛОГ”</h2>
+      <nav class="footer__nav">
+        <h4 class="footer__nav-title">Навигация</h4>
+        <ul class="footer__nav-list">
+          <li class="footer__nav-item">
+            <a class="footer__nav-link" href="#">Главная</a>
+          </li>
+          <li class="footer__nav-item">
+            <a class="footer__nav-link" href="#">Новости</a>
+          </li>
+          <li class="footer__nav-item">
+            <a class="footer__nav-link" href="#">Документы</a>
+          </li>
+          <li class="footer__nav-item">
+            <a class="footer__nav-link" href="#">Фотогалерея</a>
+          </li>
+          <li class="footer__nav-item">
+            <a class="footer__nav-link" href="#">Контакты</a>
+          </li>
+          <li class="footer__nav-item">
+            <a class="footer__nav-link" href="#">Вакансии</a>
+          </li>
+        </ul>
+      </nav>
+    </footer>
+
+    <div class="popup">
+      <div class="popup__container">
+        <button class="popup__close" type="button" aria-label="Закрыть попап"></button>
+        <h2 class="popup__title">СНТ “ГЕОЛОГ”</h2>
+        <form class="popup__form" name="form-auth">
+          <h3 class="popup__form-title title">Авторизация</h3>
+          <label class="popup__fieldset">
+            Логин:
+            <input class="popup__form-input popup__form-input--email" type="email" name="login" required>
+          </label>
+          <label class="popup__fieldset">
+            Пароль:
+            <input class="popup__form-input popup__form-input--password" type="password" name="password" required>
+          </label>
+          <div class="popup__links-row">
+            <label class="popup__checkbox">
+              <input type="checkbox">
+              <span class="popup__checkmark"></span>
+              Запомнить меня
+            </label>
+            <a class="popup__forget-link" href="#">Забыл пароль</a>
+          </div>
+          <button class="popup__submit" type="submit">Войти</button>
+          <p class="popup__footer-text">
+            Нажимая на кнопку Войти, Вы добровольно даете
+            <a class="popup__footer-text-link" href="#">согласие</a>
+            на обработку Ваших персональных данных.
+          </p>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</body>
+<script src="./index.js"></script>
+
+</html>

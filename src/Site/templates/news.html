@@ -1,0 +1,132 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static "./news.css" %}">
+  <title>Новости</title>
+</head>
+
+<body class="root">
+  <div class="page">
+
+    <header class="header">
+      <button type="button" class="burger">
+        <div class="burger__bar"></div>
+      </button>
+      <nav class="header__nav">
+        <ul class="header__nav-list">
+          <li class="header__nav-item">
+            <a class="header__nav-link" href="/">Главная</a>
+          </li>
+          <li class="header__nav-item">
+            <a class="header__nav-link" href="/news">Новости</a>
+          </li>
+          <li class="header__nav-item">
+            <a class="header__nav-link" href="/documents">Документы</a>
+          </li>
+          <li class="header__nav-item">
+            <a class="header__nav-link" href="/contacts">Контакты</a>
+          </li>
+          <li class="header__nav-item">
+            <a class="header__nav-link" href="/forum">Форум</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="header__interactions">
+        <a class="header__tel-link" href="tel:+79999999999">+7 (999) 999-99-99</a>
+        <a class="header__profile-link" href="#">Войти в личный кабинет</a>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="main__hero hero">
+        <div class="hero__text">
+          <h1 class="hero__title hero__title--pages">Новости</h1>
+        </div>
+      </section>
+
+      <section class="main__news news">
+        {% for new in news %}
+          <article class="news__article">
+            <img class="news__img" src="{{ new.image.url }}" alt="изображение статьи">
+            <div class="news__article-content">
+              <p class="news__article-date">{{ new.date }}</p>
+              <h3 class="news__article-title">{{ new.name|truncatechars:35 }}</h3>
+              <p class="news__article-text">{{ new.content|truncatechars:180 }}</p>
+              <a class="news__article-link" href="{% url 'newsSingle' pk=new.pk %}">Подробнее</a>
+            </div>
+          </article>
+        {% endfor %}
+      </section>
+
+    </main>
+
+    <footer class="footer">
+      <h2 class="footer__title">СНТ “ГЕОЛОГ”</h2>
+      <nav class="footer__nav">
+        <h4 class="footer__nav-title">Навигация</h4>
+        <ul class="footer__nav-list">
+          <li class="footer__nav-item">
+            <a class="footer__nav-link" href="/">Главная</a>
+          </li>
+          <li class="footer__nav-item">
+            <a class="footer__nav-link" href="/news">Новости</a>
+          </li>
+          <li class="footer__nav-item">
+            <a class="footer__nav-link" href="/documents">Документы</a>
+          </li>
+          <li class="footer__nav-item">
+            <a class="footer__nav-link" href="/gallery">Фотогалерея</a>
+          </li>
+          <li class="footer__nav-item">
+            <a class="footer__nav-link" href="/contacts">Контакты</a>
+          </li>
+          <li class="footer__nav-item">
+            <a class="footer__nav-link" href="/vacancies">Вакансии</a>
+          </li>
+        </ul>
+      </nav>
+    </footer>
+
+    <div class="popup">
+      <div class="popup__container">
+        <button class="popup__close" type="button" aria-label="Закрыть попап"></button>
+        <h2 class="popup__title">СНТ “ГЕОЛОГ”</h2>
+        <form method="POST" id="login-form" class="popup__form" name="form-auth">
+          {% csrf_token %}
+          <h3 class="popup__form-title title">Авторизация</h3>
+          <label class="popup__fieldset">
+            Логин:
+            <input class="popup__form-input popup__form-input--email" name="username" required>
+          </label>
+          <label class="popup__fieldset">
+            Пароль:
+            <input class="popup__form-input popup__form-input--password" type="password" name="password" required>
+          </label>
+          <div class="popup__links-row">
+            <label class="popup__checkbox">
+              <input type="checkbox">
+              <span class="popup__checkmark"></span>
+              Запомнить меня
+            </label>
+            <a class="popup__forget-link" href="#">Забыл пароль</a>
+          </div>
+          <button class="popup__submit" type="submit">Войти</button>
+          <p class="popup__footer-text">
+            Нажимая на кнопку Войти, Вы добровольно даете
+            <a class="popup__footer-text-link" href="#">согласие</a>
+            на обработку Ваших персональных данных.
+          </p>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</body>
+<script src="../static/index.js"></script>
+
+</html>

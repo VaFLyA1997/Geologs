@@ -1,0 +1,13 @@
+{% for doc in docs %}
+  <li class="documents__list-item">
+    <h3 class="documents__list-item-title">{{ doc.title }}</h3>
+    <p class="documents__list-item-text">Утверждено решением общего собрания</p>
+    <div class="documents__list-item-row">
+      <a class="documents__list-item-btn" href="{% url 'download' pk=doc.id %}">Скачать</a>
+      <p class="documents__list-item-date">{{ doc.date }}</p>
+      <p class="documents__list-item-size">{{ doc.size_formatted }}</p>
+    </div>
+  </li>
+{% empty %}
+  <p>Документов в этой категории нет.</p>
+{% endfor %}

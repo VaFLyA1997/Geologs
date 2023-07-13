@@ -1,0 +1,72 @@
+.hero {
+  background: url("../assets/images/hero.jpg") center / cover no-repeat;
+  min-height: 430px;
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (max-width: 767px) {
+  .hero {
+    min-height: 350px;
+  }
+}
+
+.hero__text {
+  background: rgba(139, 169, 79, 0.4);
+  -webkit-backdrop-filter: blur(7.5px);
+  backdrop-filter: blur(7.5px);
+  border-radius: 0px 20px 20px 0px;
+  max-width: 1020px;
+  padding: 46px 0 46px 40px;
+  width: 100%;
+}
+
+@media screen and (max-width: 767px) {
+  .hero__text {
+    padding: 20px 0 20px 15px;
+    /* background: rgba(23, 28, 11, 0.4); */
+  }
+}
+
+.hero__title {
+  margin: 0;
+  font-family: "Kaisei-HarunoUmi";
+  font-weight: 700;
+  font-size: 60px;
+  line-height: 87px;
+  line-height: 145%;
+  color: #fff;
+}
+
+.hero__title--pages {
+  font-family: "Century-Gothic";
+  font-weight: 400;
+font-size: 48px;
+line-height: 59px;
+}
+
+.hero__title--profile {
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 59px;
+}
+
+@media screen and (max-width: 767px) {
+  .hero__title {
+    font-size: 48px;
+    line-height: 100%;
+  }
+  .hero__title--profile {
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 59px;
+  }
+}
+
+.hero__subtitle {
+  margin: 0;
+  font-size: 25px;
+  line-height: 124%;
+  font-weight: 400;
+  color: #fff;
+}

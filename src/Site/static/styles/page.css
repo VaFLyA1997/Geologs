@@ -1,0 +1,18 @@
+.page {
+  min-width: 320px;
+  max-width: 1350px;
+  margin: 0 auto;
+  font-family: "Century-Gothic", Arial, sans-serif;
+  box-sizing: border-box;
+  color: #000;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1 1 auto;
+  margin: 0 auto;
+  width: 100%;
+  background-color: #fff;
+}

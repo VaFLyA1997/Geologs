@@ -1,0 +1,51 @@
+.welcome {
+  background-color: #fff;
+  padding: 59px 0 49px 0;
+  position: relative;
+}
+
+.welcome::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 85%;
+  margin: 0 auto;
+  height: 3px;
+  background-color: #727272;
+}
+
+.welcome__title {
+  margin: 0 0 30px 0;
+}
+
+@media screen and (max-width: 767px) {
+  .welcome__content {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+  }
+}
+
+.welcome__text {
+  flex: 1 1 50%;
+  max-width: 555px;
+  padding: 0 0 0 90px;
+}
+
+@media screen and (max-width: 1023px) {
+  .welcome__text {
+    padding: 0 0 0 45px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .welcome__text {
+    padding: 0;
+  }
+}
+
+.welcome__img {
+  max-width: 669px;
+  margin: 0 auto;
+}

@@ -1,0 +1,59 @@
+.profile {
+  padding: 50px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+.profile__avatar {
+  -o-object-fit: cover;
+     object-fit: cover;
+  max-width: 240px;
+  height: 100%;
+}
+.profile__data {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+.profile__data-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.profile__data-item-name {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 25px;
+  color: #727272;
+  margin: 0;
+}
+.profile__data-item-value {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 25px;
+  margin: 0;
+}
+.profile__data-item-btn {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  width: 15px;
+  height: 15px;
+  background: url("../assets/images/pen.svg") center / cover no-repeat;
+}
+.profile__count {
+  margin-left: auto;
+  display: flex;
+  gap: 10px;
+}
+.profile__count-text {
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 39px;
+  color: #7dad1b;
+}
+.profile__count-value {
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 39px;
+}

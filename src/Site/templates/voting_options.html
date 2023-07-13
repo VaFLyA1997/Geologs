@@ -1,0 +1,8 @@
+<div class="single-forum__article-form-radio-wrapper">
+    {% for option in voting_options %}
+    <label class="voting-option" style="{{ option.gradient }}">{{ option.option_text }}
+      <input type="radio" name="vote" value="{{ option.id }}">
+      <span></span>
+      <p class="single-forum__article-form-input-counter" data-option-id="{{ option.id }}">{{ option.voters.all.count }}</p>
+    </label>
+    {% endfor %}

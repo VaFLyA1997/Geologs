@@ -1,0 +1,36 @@
+create table Users
+(
+	User_id serial primary key,
+	User_login character varying(30) unique not null,
+	User_password character varying(30) NOT NULL
+);
+
+create table PersonalData
+(
+	User_id serial references Users (User_id),
+	User_family character varying(30) not null,
+	User_name character varying(30) not null,
+	User_midName character varying(30),
+	User_age int,
+	User_city character varying(30),
+	User_club character varying(30),
+	User_access integer,
+	User_discharge character varying(30),
+	User_lvlTrain character varying(30),
+	User_work character varying(30)
+);
+
+create table UserRoles
+(
+	Role_id serial primary key,
+	Role_name character varying(30)
+);
+
+create table UserRole
+(
+	User_id serial references Users (User_id),
+	Role_id serial references UserRoles (Role_id)
+)
+
+
+insert into Users values (1, 'VaFLyA', '123fgh');
