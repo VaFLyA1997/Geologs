@@ -78,8 +78,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'Geologs',  # Имя вашей базы данных
-        'USER': 'root',  # Имя пользователя MySQL
-        'PASSWORD': 'Apelsin4ik',  # Пароль пользователя MySQL
+        'USER': 'geologsnt',  # Имя пользователя MySQL
+        'PASSWORD': 'QxRtx211%Tx',  # Пароль пользователя MySQL
         'HOST': 'localhost',  # Хост MySQL
         'PORT': '3306',  # Порт MySQL
     }
